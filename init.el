@@ -57,7 +57,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(expand-region)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -300,6 +300,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+
+  (setq-default git-magit-status-fullscreen t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -314,6 +316,12 @@ you should place your code here."
   (require 'recentf)
   (recentf-mode t)
   (setq recentf-max-menu-items 10)
+
+  ;; expand-region setting
+  (global-set-key (kbd "C-=") 'er/expand-region)
+
+  ;; magit setting
+  (global-git-commit-mode t)
 
   ;; powerline status setting
   (setq powerline-default-separator 'arrow)
