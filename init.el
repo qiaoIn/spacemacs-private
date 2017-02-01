@@ -312,6 +312,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; load-path config
+  (add-to-list 'load-path "~/.spacemacs.d/lisp/")
 
   ;; recentf mode setting
   (require 'recentf)
@@ -331,12 +333,14 @@ you should place your code here."
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mode)
 
+  ;; org mode setting
+  (require 'init-org)
+
   ;; LaTeX default engine
   (add-hook 'LaTeX-mode-hook (lambda()
                                (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
                                (setq TeX-command-default "XeLaTeX")
                                ))
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
