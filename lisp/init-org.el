@@ -24,13 +24,13 @@
 ;; org templates
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/GTD/mygtd.org" "Tasks")
-         "* TODO [#B] %?\n %i\n %a"
+         "* TODO [#B] %?\n Added on %U\n %i\n %a"
          :empty-lines 1)
         ("l" "Chrome links" entry (file+headlline "~/GTD/mygtd.org" "Quick notes")
          "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
          :empty-lines 1)
         ("j" "Journal" entry (file+datetree "~/GTD/journal.org")
-         "* %?\n Entered on %U\n %i\n %a"
+         "* %?\n Added on %U\n %i\n %a"
          :empty-lines 1)))
 
 (global-set-key (kbd "C-c r") 'org-capture)
