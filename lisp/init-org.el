@@ -26,6 +26,9 @@
       '(("t" "Todo" entry (file+headline "~/GTD/mygtd.org" "Tasks")
          "* TODO [#B] %?\n Added on %U\n %i\n %a"
          :empty-lines 1)
+        ("i" "Idea" entry (file+headline "~/GTD/mygtd.org" "Ideas")
+         "* TODO [#B] %?\n Added on %U\n %i\n %a"
+         :empty-lines 1)
         ("l" "Chrome links" entry (file+headlline "~/GTD/mygtd.org" "Quick notes")
          "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
          :empty-lines 1)
@@ -33,7 +36,12 @@
          "* %?\n Added on %U\n %i\n %a"
          :empty-lines 1)))
 
-(global-set-key (kbd "C-c r") 'org-capture)
+; open org agenda view
+(global-set-key (kbd "C-c a") 'org-agenda)
+;; switch between =.org= files
+(global-set-key (kbd "C-c b") 'org-iswitchb)
+;; org capture
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; Custom Agenda Commands
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
