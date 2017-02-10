@@ -1,5 +1,8 @@
 ;; org-mode configuration
 (setq org-src-fontify-natively t)
+;; insert timestamp when toggle state 'TODO' to 'DONE'
+(setq org-log-done 'time)
+(setq org-log-done 'note)
 
 (with-eval-after-load 'org
   (setq org-agenda-files '("~/GTD")))
@@ -28,6 +31,9 @@
          :empty-lines 1)
         ("i" "Idea" entry (file+headline "~/GTD/mygtd.org" "Ideas")
          "* TODO [#B] %?\n Added on %U\n %i\n %a"
+         :empty-lines 1)
+        ("n" "Note" entry (file+datetree "~/GTD/mynote.org" "Notes")
+         "* %?\n Added on %U\n %i\n %a"
          :empty-lines 1)
         ("l" "Chrome links" entry (file+headlline "~/GTD/mygtd.org" "Quick notes")
          "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
