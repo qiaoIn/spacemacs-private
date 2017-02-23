@@ -132,8 +132,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-dark
                          spacemacs-light
+                         spacemacs-dark
                          monokai
                          zenburn
                          )
@@ -324,6 +324,9 @@ you should place your code here."
 
   ;; expand-region setting
   (global-set-key (kbd "C-=") 'er/expand-region)
+
+  ;; global hungry-delete mode on
+  (add-hook 'prog-mode-hook 'spacemacs/toggle-hungry-delete-on)
 
   ;; magit setting
   (global-git-commit-mode t)

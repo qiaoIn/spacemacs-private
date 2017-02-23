@@ -4,6 +4,24 @@
 (setq org-log-done 'time)
 (setq org-log-done 'note)
 
+;; setting blog
+(setq hexo-dir "/Users/bing/Documents/blog")
+(defun blog-new (post-name)
+  "create a hexo org post"
+  (interactive "sInput post name:")
+  (find-file (format "%s/source/_posts/%s.org" hexo-dir post-name))
+  (insert (format "#+TITLE: %s
+#+DATE: <%s>
+#+STARTUP: content
+
+*添加摘要内容*
+#+BEGIN_HTML
+<!--more-->
+#+END_HTML
+
+正文从这里开始， *注意* 仅使用 一级标题 =*= 和 三级标题 =***=
+" post-name (format-time-string "%Y-%m-%d %H:%M:%S"))))
+
 (with-eval-after-load 'org
   (setq org-agenda-files '("~/GTD")))
 
