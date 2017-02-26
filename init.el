@@ -44,13 +44,13 @@ values."
      latex
      c-c++
      git
-     markdown
      org
      yaml
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
+     ycmd
      syntax-checking
      ;; version-control
      )
@@ -340,6 +340,9 @@ you should place your code here."
 
   ;; org mode setting
   (require 'init-org)
+
+  ;; ycmd setting
+  (require 'init-ycmd)
 
   ;; LaTeX default engine
   (add-hook 'LaTeX-mode-hook (lambda()
