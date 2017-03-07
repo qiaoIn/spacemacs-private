@@ -51,8 +51,11 @@
       '(("t" "Todo" entry (file+headline "~/GTD/mygtd.org" "Tasks")
          "* TODO [#B] %?\n Added on %U\n %i\n %a"
          :empty-lines 1)
-        ("i" "Idea" entry (file+headline "~/GTD/mygtd.org" "Ideas")
-         "* TODO [#B] %?\n Added on %U\n %i\n %a"
+        ;; ("i" "Idea" entry (file+headline "~/GTD/mygtd.org" "Ideas") 
+        ;;  "* TODO [#B] %?\n Added on %U\n %i\n %a"
+        ;;  :empty-lines 1)
+        ("s" "Someday" entry (file+datetree "~/GTD/someday.org" "Someday to complete")
+         "* %?\n Added on %U\n %i\n %a"
          :empty-lines 1)
         ("n" "Note" entry (file+datetree "~/GTD/mynote.org" "Notes")
          "* %?\n Added on %U\n %i\n %a"
@@ -70,6 +73,13 @@
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 ;; org capture
 (global-set-key (kbd "C-c c") 'org-capture)
+
+(setq org-archive-location "~/GTD/archive.org::datetree/* From %s Finished Tasks") 
+
+;; refile and archive
+;; (setq org-refile-targets
+;;       (quote (("mygtd.org" :maxlevel. 1)
+;;               ("archive.org" :level . 2))))
 
 ;; Custom Agenda Commands
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html

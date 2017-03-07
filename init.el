@@ -37,6 +37,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ivy
+     helm
      auto-completion
      better-defaults
      emacs-lisp
@@ -51,6 +52,7 @@ values."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ycmd
+     gtags
      syntax-checking
      ;; version-control
      )
@@ -306,7 +308,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq-default git-magit-status-fullscreen t)
   )
-
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -343,6 +344,11 @@ you should place your code here."
 
   ;; ycmd setting
   (require 'init-ycmd)
+
+  ;; gtags setting
+  (spacemacs/helm-gtags-define-keys-for-mode 'asm-mode)
+  (spacemacs/helm-gtags-define-keys-for-mode 'c-mode)
+  (spacemacs/helm-gtags-define-keys-for-mode 'c++-mode)
 
   ;; LaTeX default engine
   (add-hook 'LaTeX-mode-hook (lambda()
