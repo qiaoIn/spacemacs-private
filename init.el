@@ -37,30 +37,30 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ivy
-     helm
      auto-completion
      better-defaults
      emacs-lisp
      python
      latex
-     c-c++
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
+     html
      git
      org
      yaml
+     syntax-checking
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ycmd
-     gtags
-     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ggtags)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -134,8 +134,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-light
                          spacemacs-dark
+                         spacemacs-light
                          monokai
                          zenburn
                          )
@@ -342,19 +342,16 @@ you should place your code here."
   ;; org mode setting
   (require 'init-org)
 
-  ;; ycmd setting
-  (require 'init-ycmd)
+  ;; hs-minor-mode
+  (add-hook 'c-mode-common-hook 'hs-minor-mode)
 
-  ;; gtags setting
-  (spacemacs/helm-gtags-define-keys-for-mode 'asm-mode)
-  (spacemacs/helm-gtags-define-keys-for-mode 'c-mode)
-  (spacemacs/helm-gtags-define-keys-for-mode 'c++-mode)
+  ;; ggtags setting
+  (require 'init-ggtags)
 
   ;; LaTeX default engine
   (add-hook 'LaTeX-mode-hook (lambda()
                                (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
-                               (setq TeX-command-default "XeLaTeX")
-                               ))
+                               (setq TeX-command-default "XeLaTeX")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

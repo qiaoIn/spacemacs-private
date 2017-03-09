@@ -1,6 +1,29 @@
 ;; org-mode configuration
 
 (setq org-src-fontify-natively t)
+
+;; set org todo keywords, default *ONLY* contain TODO and DONE
+;; TODO(t) The item is ready to be done at the earliest opportunity or at the date
+;;         (and maybe time) indicated in the SCHEDULED tag. Some tasks are given
+;;         a DEADLINE date which is useful for scheduling the tasks during my daily planning.
+;; STARTED(s!) I should use this tag when I start on a task, but if I clock in to
+;;             a TODO item, I don't really need this task.
+;; WAITING(w@/!) I did some work on this task but I am waiting for a response. If I use
+;;               this task I schedule the task into the future as a reminder to follow up
+;;               with some notes in the body of the task.
+;; APPT(a@) Used to tag an activity that can only be done at the specified time and date,
+;;          instead of tasks that can be completed at any time.
+;; | divide "TODO" sequences and "DONE" sequences
+;; DONE(d!) The task is completed.
+;; CANCELED(c@/!) I decided not to do this task but have left the task on file with this status.
+;; DEFERRED(d@/!) Used to identify a task that will not be activated just yet.
+;;                The reason will be included in the task notes.
+;; followed this article
+;; published on http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html 
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "APPT(a@)"
+                  "|" "DONE(d!)" "CANCELED(c@/!)" "DEFERRED(d@/!)")))
+
 ;; insert timestamp when toggle state 'TODO' to 'DONE'
 (setq org-log-done 'time)
 (setq org-log-done 'note)
@@ -28,23 +51,6 @@
 
 (with-eval-after-load 'org
   (setq org-agenda-files '("~/GTD")))
-
-;; help function for insert chrome tabs
-(defun zilongshanren/retrieve-chrome-current-tab-url()
-  "Get the URL of the active tab of the first window"
-  (interactive)
-  (let ((result (do-applescript
-                 (concat
-                  "set frontmostApplication to path to frontmost application\n"
-                  "tell application \"Google Chrome\"\n"
-                  "	set theUrl to get URL of active tab of first window\n"
-                  "	set theResult to (get theUrl) \n"
-                  "end tell\n"
-                  "activate application (frontmostApplication as text)\n"
-                  "set links to {}\n"
-                  "copy theResult to the end of links\n"
-                  "return links as string\n"))))
-    (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
 
 ;; org templates
 (setq org-capture-templates
@@ -74,12 +80,7 @@
 ;; org capture
 (global-set-key (kbd "C-c c") 'org-capture)
 
-(setq org-archive-location "~/GTD/archive.org::datetree/* From %s Finished Tasks") 
-
-;; refile and archive
-;; (setq org-refile-targets
-;;       (quote (("mygtd.org" :maxlevel. 1)
-;;               ("archive.org" :level . 2))))
+(setq org-archive-location "~/GTD/archive.org::datetree/* From %s Finished Tasks")
 
 ;; Custom Agenda Commands
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
