@@ -36,6 +36,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     osx
      ivy
      auto-completion
      better-defaults
@@ -322,6 +323,16 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; load-path config
   (add-to-list 'load-path "~/.spacemacs.d/lisp/")
+
+  ;; config esc to jk
+  (setq-default evil-escape-key-sequence "jk")
+  (setq-default evil-escape-delay 0.3)
+
+  ;; enable C-e and C-a in insert-state, motion state
+  (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
+  (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
+  (define-key evil-insert-state-map (kbd "C-a") 'mwim-beginning-of-code-or-line)
+  (define-key evil-motion-state-map (kbd "C-a") 'mwim-beginning-of-code-or-line)
 
   ;; recentf mode setting
   (require 'recentf)
