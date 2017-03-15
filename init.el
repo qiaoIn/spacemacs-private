@@ -39,8 +39,12 @@ values."
      ivy
      auto-completion
      better-defaults
+     (colors :variables
+             colors-colorize-identifiers 'all
+             colors-enable-nyan-cat-progress-bar t)
      emacs-lisp
      python
+     ;; go
      latex
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -107,7 +111,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'emacs
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -134,6 +138,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         material
                          spacemacs-dark
                          spacemacs-light
                          monokai
@@ -334,6 +339,13 @@ you should place your code here."
 
   ;; powerline status setting
   (setq powerline-default-separator 'arrow)
+  ;; fontface setting
+  (dolist (charset '(kana han cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font) charset
+                      (font-spec :family "楷体-简" :size 16)))
+
+  ;; zshrc path setting
+  (setq exec-path-from-shell-arguments '("-l"))
 
   ;; occur mode setting
   (evilified-state-evilify-map occur-mode-map
