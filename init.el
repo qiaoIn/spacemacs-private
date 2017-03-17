@@ -44,7 +44,8 @@ values."
              colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
      emacs-lisp
-     python
+     (python :variables
+             python-sort-imports-on-save t)
      ;; go
      latex
      (c-c++ :variables
@@ -328,7 +329,7 @@ you should place your code here."
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.3)
 
-  ;; enable C-e and C-a in insert-state, motion state
+;; enable C-e and C-a in insert-state, motion state
   (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-insert-state-map (kbd "C-a") 'mwim-beginning-of-code-or-line)
