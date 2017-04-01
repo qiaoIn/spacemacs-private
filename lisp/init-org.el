@@ -16,13 +16,13 @@
 ;; | divide "TODO" sequences and "DONE" sequences
 ;; DONE(d!) The task is completed.
 ;; CANCELED(c@/!) I decided not to do this task but have left the task on file with this status.
-;; DEFERRED(d@/!) Used to identify a task that will not be activated just yet.
+;; DEFERRED(f@/!) Used to identify a task that will not be activated just yet.
 ;;                The reason will be included in the task notes.
 ;; followed this article
 ;; published on http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "APPT(a@)"
-                  "|" "DONE(d!)" "CANCELED(c@/!)" "DEFERRED(d@/!)")))
+                  "|" "DONE(d!)" "CANCELED(c@/!)" "DEFERRED(f@/!)")))
 
 ;; insert timestamp when toggle state 'TODO' to 'DONE'
 (setq org-log-done 'time)

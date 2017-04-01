@@ -66,7 +66,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(ggtags)
+   dotspacemacs-additional-packages '(
+                                      ggtags
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -329,7 +331,7 @@ you should place your code here."
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.3)
 
-;; enable C-e and C-a in insert-state, motion state
+  ;; enable C-e and C-a in insert-state, motion state
   (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-insert-state-map (kbd "C-a") 'mwim-beginning-of-code-or-line)
@@ -365,6 +367,9 @@ you should place your code here."
 
   ;; org mode setting
   (require 'init-org)
+
+  ;; using org-mode write blog
+  (require 'init-blog)
 
   ;; hs-minor-mode
   (add-hook 'c-mode-common-hook 'hs-minor-mode)
