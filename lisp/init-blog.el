@@ -19,7 +19,10 @@
          :sitemap-style list
          :with-latex t
          :html-head-extra
-         "<link rel=\"icon\" href=\"favicon.ico\">"   ;; 设置网帐logo \TODO
+         "<link rel=\"icon\" href=\"favicon.ico\">
+         <script type=\"text/javascript\" async
+           src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?...\">
+         </script>"
          :html-preamble
          "<div class=\"header\">
               <a href=\"https://aprilwith.me\">自在随心</a> | <a href=\"http://github.com/qiaoin\">Github</a>
