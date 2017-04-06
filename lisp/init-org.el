@@ -19,7 +19,7 @@
 ;; DEFERRED(f@/!) Used to identify a task that will not be activated just yet.
 ;;                The reason will be included in the task notes.
 ;; followed this article
-;; published on http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html 
+;; published on http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html
 (setq org-todo-keywords
       '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "APPT(a@)"
                   "|" "DONE(d!)" "CANCELED(c@/!)" "DEFERRED(f@/!)")))
@@ -29,24 +29,19 @@
 (setq org-log-done 'note)
 
 ;; setting blog
-(setq hexo-dir "/Users/bing/Documents/blog")
-(defun blog-new (post-name)
-  "create a hexo org post"
+(setq blog-dir "/Users/bing/org/blog")
+(defun new-blog (post-name)
+  "create a org post for https://aprilwith.me"
   (interactive "sInput post name:")
-  (find-file (format "%s/source/_posts/%s.org" hexo-dir post-name))
+  (find-file (format "%s/%s.org" blog-dir post-name))
   (insert (format "#+TITLE: %s
 #+DATE: <%s>
 #+OPTIONS: toc:nil
 #+STARTUP: content
 
-*添加摘要内容*
-#+BEGIN_HTML
-<!--more-->
-#+END_HTML
-
 #+TOC: headlines [level-num]
 
-正文从这里开始， *注意* 仅使用 一级标题 =*= 和 三级标题 =***=
+正文从这里开始， *注意* 使用 Org-mode 的方式进行编辑即可。
 " post-name (format-time-string "%Y-%m-%d %H:%M:%S"))))
 
 (with-eval-after-load 'org
@@ -57,7 +52,7 @@
       '(("t" "Todo" entry (file+headline "~/GTD/mygtd.org" "Tasks")
          "* TODO [#B] %?\n Added on %U\n %i\n %a"
          :empty-lines 1)
-        ;; ("i" "Idea" entry (file+headline "~/GTD/mygtd.org" "Ideas") 
+        ;; ("i" "Idea" entry (file+headline "~/GTD/mygtd.org" "Ideas")
         ;;  "* TODO [#B] %?\n Added on %U\n %i\n %a"
         ;;  :empty-lines 1)
         ("s" "Someday" entry (file+datetree "~/GTD/someday.org" "Someday to complete")
