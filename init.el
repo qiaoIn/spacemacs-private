@@ -38,8 +38,15 @@ values."
      ;; ----------------------------------------------------------------
      osx
      ivy
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-help-tooltip t
+                      :disabled-for
+                      org)
      better-defaults
+     (spacemacs-layouts :variables
+                        layouts-enable-autosave nil
+                        layouts-autosave-delay 300)
      (colors :variables
              colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
@@ -52,9 +59,9 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      html
-     git
+     (git :variables
+          git-magit-status-fullscreen t)
      org
-     yaml
      syntax-checking
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -72,7 +79,42 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    magit-gh-pulls magit-gitflow magithub
+                                    git-gutter git-gutter-fringe
+                                    org-projectile org-bullets org-repo-todo org-download org-timer org-present
+                                    realgud
+                                    evil-mc evil-args evil-exchange evil-unimpaired evil-indent-plus evil-lisp-state
+                                    vi-tilde-fringe
+                                    volatile-highlights
+                                    holy-mode
+                                    skewer-mode
+                                    highlight-indentation
+                                    smooth-scrolling
+                                    livid-mode
+                                    leuven-theme
+                                    gh-md
+                                    spray
+                                    lorem-ipsum
+                                    symon
+                                    ac-ispell ace-jump-mode
+                                    auto-dictionary
+                                    define-word
+                                    google-translate
+                                    disaster
+                                    epic
+                                    fancy-battery
+                                    orgit
+                                    orglue
+                                    smeargle
+                                    ido-vertical-mode
+                                    flx-ido
+                                    company-quickhelp
+                                    counsel-projectile
+                                    window-purpose
+                                    ivy-purpose
+                                    spacemacs-purpose-popwin
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -132,7 +174,7 @@ values."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    ;;dotspacemacs-startup-lists '((recents . 5)
-   ;;                             (projects . 7))  ;; original by spacemacs
+   ;;                        (todos . 5))  ;; original by spacemacs
    dotspacemacs-startup-lists nil
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
@@ -142,7 +184,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         material
+                         spacemacs-dark
+                         ;;material
                          github
                          ;;spacemacs-dark
                          ;;spacemacs-light
@@ -154,7 +197,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -316,7 +359,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
-  (setq-default git-magit-status-fullscreen t)
+  (setq-default c-default-style "bsd")
+  (setq-default c-basic-offset 4)
+  (setq-default tab-width 4)
   )
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -343,6 +388,10 @@ you should place your code here."
   (recentf-mode t)
   (setq recentf-max-menu-items 10)
 
+  ;; enabled global linum-mode
+  ;;(global-linum-mode t)
+  ;;(setq linum-format "%4d| ")
+
   ;; expand-region setting
   (global-set-key (kbd "C-=") 'er/expand-region)
 
@@ -357,7 +406,7 @@ you should place your code here."
   ;; fontface setting
   (dolist (charset '(kana han cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "楷体-简" :size 16)))
+                      (font-spec :family "楷体-简" :size 14)))
 
   ;; zshrc path setting
   (setq exec-path-from-shell-arguments '("-l"))
