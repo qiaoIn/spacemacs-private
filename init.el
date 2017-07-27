@@ -47,13 +47,12 @@ values."
      (spacemacs-layouts :variables
                         layouts-enable-autosave nil
                         layouts-autosave-delay 300)
-     (colors :variables
-             colors-colorize-identifiers 'all
-             colors-enable-nyan-cat-progress-bar t)
+     colors
      emacs-lisp
      (python :variables
              python-sort-imports-on-save t)
      ;; go
+     markdown
      latex
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -75,6 +74,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       ggtags
+                                      google-c-style
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -184,10 +184,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         ;;moe-light
                          spacemacs-dark
                          ;;material
                          github
-                         ;;spacemacs-dark
                          ;;spacemacs-light
                          ;;monokai
                          ;;zenburn
@@ -359,9 +359,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
-  (setq-default c-default-style "bsd")
-  (setq-default c-basic-offset 4)
-  (setq-default tab-width 4)
+  ;;(setq-default c-default-style "bsd")
+  ;;(setq-default c-basic-offset 4)
+  ;;(setq-default tab-width 4)
   )
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -383,14 +383,18 @@ you should place your code here."
   (define-key evil-insert-state-map (kbd "C-a") 'mwim-beginning-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-a") 'mwim-beginning-of-code-or-line)
 
+
+  ;; mode line color setting
+  ;;(moe-theme-set-color 'orange)
+
   ;; recentf mode setting
   (require 'recentf)
   (recentf-mode t)
   (setq recentf-max-menu-items 10)
 
   ;; enabled global linum-mode
-  ;;(global-linum-mode t)
-  ;;(setq linum-format "%4d| ")
+  (global-linum-mode t)
+  (setq linum-format "%4d ")
 
   ;; expand-region setting
   (global-set-key (kbd "C-=") 'er/expand-region)
@@ -415,6 +419,9 @@ you should place your code here."
   (evilified-state-evilify-map occur-mode-map
     :mode occur-mode)
 
+  ;; misc setting
+  (require 'init-misc)
+
   ;; org mode setting
   (require 'init-org)
 
@@ -426,6 +433,9 @@ you should place your code here."
 
   ;; ggtags setting
   (require 'init-ggtags)
+
+  ;; google-c-style.el --- Google's C/C++ style for c-mode
+  (require 'init-cpp)
 
   ;; LaTeX default engine
   (add-hook 'LaTeX-mode-hook (lambda()
