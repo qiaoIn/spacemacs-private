@@ -26,14 +26,14 @@
          ;;</script>"
          :html-preamble
          "<div class=\"header\">
-              <a href=\"https://aprilwith.me\">自在随心</a> | <a href=\"http://github.com/qiaoin\">Github</a>
+              <a href=\"http://aprilwith.me\">自在随心</a> | <a href=\"https://github.com/qiaoin\">Github</a>
           </div>"
          :html-postamble
          (lambda (info)
            "Do not show disqus for Archive and Recent Posts"
            (cond ((string= (car (plist-get info :title)) "Sitemap") "")
                  ((string= (car (plist-get info :title)) "Recent Posts")
-                  "<div id=\"sitemap\"><a href=\"https://aprilwith.me\">Other posts</a></div>")
+                  "<div id=\"sitemap\"><a href=\"http://aprilwith.me\">Other posts</a></div>")
                  (t
                   "<div id=\"disqus_thread\"></div>
                   <script>
